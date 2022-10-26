@@ -17,7 +17,7 @@ class WeatherController extends Controller
     public function getWheatherBit()
     {
         $data = new WheatherBit('Moscow');
-        $data_wea_bit = $data->setUrlWeatherBit()->getJsonWeatherBit();
+        $data_wea_bit = $data->setUrlWeatherBit()->getDataWeatherBit();
         return view('weather', compact('data_wea_bit'));
     }
 

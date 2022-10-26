@@ -37,6 +37,19 @@
         <p>Скорость ветра в м/c {{ $data_wea_bit['data'][0]['wind_spd'] ?? '' }}
         <p>
     </div>
+    <div>
+        <b>Tomorrow.io:</b>
+    </div>
+    <div>
+        <p>Город: {{ $data_wea_bit['data'][0]['city_name'] ?? '' }}
+        <p>
+        <p>Температура: {{ $data_wea_bit['data'][0]['app_temp'] ?? '' }}
+        <p>
+        <p>Статус: {{ $data_wea_bit['data'][0]['weather']['description'] ?? '' }}
+        <p>
+        <p>Скорость ветра в м/c {{ $data_wea_bit['data'][0]['wind_spd'] ?? '' }}
+        <p>
+    </div>
 </body>
 
 </html>
