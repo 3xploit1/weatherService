@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 // Route::get('/', [ WeatherController::class, 'getOpenWeatherMap']);
-Route::get('/', [ WeatherController::class, 'getWheatherBit']);
+// Route::get('/', [ WeatherController::class, 'getWheatherBit']);
+Route::get('/', [ WeatherController::class, 'getTomorrow']);

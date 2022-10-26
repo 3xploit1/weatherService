@@ -41,13 +41,15 @@
         <b>Tomorrow.io:</b>
     </div>
     <div>
-        <p>Город: {{ $data_wea_bit['data'][0]['city_name'] ?? '' }}
+        <p>Время сбора: {{$data_tomorrow["data"]["timelines"][0]["intervals"][0]["startTime"]}}
         <p>
-        <p>Температура: {{ $data_wea_bit['data'][0]['app_temp'] ?? '' }}
+        <p>Город: {{ $data->city ?? '' }}
         <p>
-        <p>Статус: {{ $data_wea_bit['data'][0]['weather']['description'] ?? '' }}
+        <p>Температура: {{ $data_tomorrow["data"]["timelines"][0]["intervals"][0]["values"]["temperature"] ?? '' }}
         <p>
-        <p>Скорость ветра в м/c {{ $data_wea_bit['data'][0]['wind_spd'] ?? '' }}
+        <p>Статус: {{ $data_tomorrow["data"]["timelines"][0]["intervals"][0]["values"]["weatherCode"] ?? '' }}
+        <p>
+        <p>Скорость ветра в м/c {{ $data_tomorrow["data"]["timelines"][0]["intervals"][0]["values"]["windSpeed"] ?? '' }}
         <p>
     </div>
 </body>

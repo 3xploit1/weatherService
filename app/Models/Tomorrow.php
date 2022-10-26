@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Geocoder;
+use App\Models\Geocoder;
 
 class Tomorrow
 {
     public string $apiKeyTomorrow; 
     public string $city;
-    private static string $mainDomain = 'https://api.tomorrow.io/v4/timelines';
-    public string $url;  
+    public $mainDomain = 'https://api.tomorrow.io/v4/timelines?';
+    public string $url; 
+    public string $geoLat;
+    public string $geoLng;  
 
     public function __construct($city)
     {   
@@ -23,11 +25,11 @@ class Tomorrow
      *
      * @return void
      */
-    private function getConvertLocation()
+    public function getConvertLocation()
     {
         $converter = new Geocoder($this->city); 
-        $geoCoordinate = $converter->getGeoCoder()->getGeoData(); 
-        return $geoCoordinate; 
+        [$this->geoLat, $this->geoLng] = $converter->getGeoCoder()->getGeoData(); 
+        return $this; 
     }
 
     /**
@@ -39,20 +41,20 @@ class Tomorrow
     public function setUrlTomorrow()
     {
         $getParam = [
-            'location' => $this->getConvertLocation(),
+            'location' => "$this->geoLat, $this->geoLng",
             'start_time' => 'now',
             'fields' => 'temperature, humidity, windSpeed, weatherCode',
             'units' => 'metric',
             'apikey' => $this->apiKeyTomorrow
         ]; 
-        $this->url = static::$mainDomain . '?' . http_build_query($getParam);
+ 
+        $this->url = preg_replace('/%2C\+/', ',', $this->mainDomain . http_build_query($getParam));
         return $this; 
     }
 
-    public function getDataTomorrow(): array
+    public function getDataTomorrow()
     {
         $json = file_get_contents($this->url);
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR); 
     }
-
 }

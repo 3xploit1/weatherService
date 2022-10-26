@@ -25,7 +25,7 @@ class OpenWeatherMap
      *
      * @return void
      */
-    public function getJsonWeatherOpenWeatherMap()
+    public function getDataWeatherOpenWeatherMap()
     {
         $json = file_get_contents($this->url);
         return json_decode($json, true, 512, JSON_THROW_ON_ERROR); 

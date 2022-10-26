@@ -1,6 +1,8 @@
 <?php
 
-Class Geocoder
+namespace App\Models;
+
+class Geocoder
 {
     public string $apiKeyGeoCoder; 
     public $geocoder; 
@@ -21,6 +23,6 @@ Class Geocoder
     public function getGeoData()
     {
         $result = $this->geocoder->geocode($this->city); 
-        return $result['status']['message'] == 'OK' ? $result : '';
+        return [$result["results"][0]["geometry"]["lat"], $result["results"][0]["geometry"]["lng"]]; 
     }
 }
