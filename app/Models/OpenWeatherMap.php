@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Exception;
+
+/**
+ * Класс предоставляет данные погодных условий используя API сервис - OpenWeatherMap
+ */
 class OpenWeatherMap
 {
     public string $apiKey;
-    public string $city;
+    public ?string $city;
     public string $url;
 
     public function __construct($city)
@@ -14,20 +19,28 @@ class OpenWeatherMap
         $this->city = $city;
     }
 
+    /**
+     * Установление url для последующего запроса
+     */
     public function setUrlOpenWeatherMap()
     {
         $this->url = "http://api.openweathermap.org/data/2.5/weather?q={$this->city}&lang=ru&units=metric&appid={$this->apiKey}";
-        return $this; 
+        return $this;
     }
-    
+
     /**
-     * Получает json из установленного url и декодирует в массив
+     * Получение данных в формате json, и их последующее декодирование в ассоциативный массив 
      *
-     * @return void
+     * @return array
      */
-    public function getDataWeatherOpenWeatherMap()
+    public function getDataWeatherOpenWeatherMap(): array
     {
-        $json = file_get_contents($this->url);
-        return json_decode($json, true, 512, JSON_THROW_ON_ERROR); 
+        try {
+            $json = file_get_contents($this->url);
+            return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        } catch (Exception) {
+            echo "OpenWeatherMap не может вернуть результат\n";
+            return [];
+        }
     }
 }

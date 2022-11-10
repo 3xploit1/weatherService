@@ -1,0 +1,7 @@
+body {
+    background: gray;
+}
+
+input[name="city_search"] {
+    background: rgb(177, 177, 177);
+}

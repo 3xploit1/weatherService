@@ -4,37 +4,73 @@ namespace App\Http\Controllers;
 
 use App\Models\OpenWeatherMap;
 use App\Models\Tomorrow;
-use App\Models\WheatherBit; 
+use App\Models\WheatherBit;
+use Illuminate\Http\Request;
 
 class WeatherController extends Controller
 {
-    public function getOpenWeatherMap()
+    /**
+     * Получить массив геоданных с помощью сервиса OpenWeatherMap
+     *
+     * @param [type] $city
+     */
+    public function getOpenWeatherMap($city)
     {
-        $data = new OpenWeatherMap('Киров');
-        $weather_data = $data->setUrlOpenWeatherMap()->getDataWeatherOpenWeatherMap();
-        return view('weather', compact('weather_data'));
-    }
-
-    public function getWheatherBit()
-    {
-        $data = new WheatherBit('Moscow');
-        $data_wea_bit = $data->setUrlWeatherBit()->getDataWeatherBit();
-        return view('weather', compact('data_wea_bit'));
+        $data = new OpenWeatherMap($city);
+        return $data->setUrlOpenWeatherMap()->getDataWeatherOpenWeatherMap();
     }
 
     /**
-     * ToDo: Сервис Tommorrow использовать как главный 
+     * Получить массив геоданных с помощью сервиса WheatherBit
      *
-     * @return void
+     * @param [type] $city
      */
-    public function getTomorrow()
+    public function getWheatherBit($city)
     {
-        $data = new Tomorrow('Moscow');
-        $data->getConvertLocation(); 
-        $data->setUrlTomorrow(); 
-        $data_tomorrow = $data->getDataTomorrow(); 
-        return view('weather', compact('data_tomorrow'));
+        $data = new WheatherBit($city);
+        return $data->setUrlWeatherBit()->getDataWeatherBit();
+    }
+
+     /**
+     * Получить массив геоданных с помощью сервиса Tomorrow
+     *
+     * @param [type] $city
+     */
+    public function getTomorrow($city)
+    {
+        $data = new Tomorrow($city);
+        if ($data->getConvertLocation())
+            return $data->setUrlTomorrow()->getDataTomorrow();
+        return [];
     }
 
 
+    /**
+     * Получить результат от всех сервисов 
+     * POST запрос
+     * 
+     * @param Request $request
+     */
+    public function showResponse(Request $request)
+    {
+        if ($request->has('text')) {
+            $data_open_weather = $this->getOpenWeatherMap($request->input('text'));
+            $data_weather_bit = $this->getWheatherBit($request->input('text'));
+            $data_tomorrow = $this->getTomorrow($request->input('text'));
+            return view('weather', compact('data_tomorrow', 'data_weather_bit', 'data_open_weather'));
+        }
+    }
+
+    /**
+     * Получить результат от всех сервисов 
+     * GET запрос
+     * @return void
+     */
+    public function showAllService()
+    {
+        $data_open_weather = $this->getOpenWeatherMap('Moscow');
+        $data_weather_bit = $this->getWheatherBit('Moscow');
+        $data_tomorrow = $this->getTomorrow('Moscow');
+        return view('weather', compact('data_tomorrow', 'data_weather_bit', 'data_open_weather'));
+    }
 }
