@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('weather');
 });
 
-Route::get('/', [ WeatherController::class, 'showAllService']);
+// Route::get('/', [ WeatherController::class, 'showAllService']);
 Route::post('/', [ WeatherController::class, 'showResponse']);
 
