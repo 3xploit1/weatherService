@@ -70,7 +70,7 @@ class WeatherController extends Controller
     {
         $data_open_weather = $this->getOpenWeatherMap('Moscow');
         $data_weather_bit = $this->getWheatherBit('Moscow');
-        // $data_tomorrow = $this->getTomorrow('Moscow');
+        $data_tomorrow = $this->getTomorrow('Moscow');
         return view('weather', compact(
             'data_tomorrow',
             'data_weather_bit',
