@@ -57,7 +57,11 @@ class WeatherController extends Controller
             $data_open_weather = $this->getOpenWeatherMap($request->input('text'));
             $data_weather_bit = $this->getWheatherBit($request->input('text'));
             $data_tomorrow = $this->getTomorrow($request->input('text'));
-            return view('weather', compact('data_tomorrow', 'data_weather_bit', 'data_open_weather'));
+            return view('weather', compact(
+                'data_tomorrow',
+                'data_weather_bit',
+                'data_open_weather'
+            ));
         }
     }
 

@@ -1,13 +1,3 @@
-/* body {
-    background: rgb(29, 29, 29);
-    color:rgb(255, 255, 255)
-} */
-
-
-/* input[name="city_search"] {
-    background: rgb(177, 177, 177);
-    text-align: center;
-} */
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
@@ -135,7 +125,6 @@ input[type=text]:focus {
 .content-tomorrow {
     font-size: 20px;
 }
-
 
 .footer {
     position: absolute;

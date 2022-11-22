@@ -69,6 +69,7 @@ class Tomorrow
             return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
         } catch (Exception) {
             echo 'Tomorrow не может вернуть результат';
+            return []; 
         }
     }
 }
