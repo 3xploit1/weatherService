@@ -1,5 +1,27 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+header {
+    width: 100%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+  }
+   
+  header::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+    background: url("/images/forest_2.jpg");
+    background-size: cover;
+  }
+
 
 * {
     margin: 0;
@@ -9,9 +31,15 @@
 }
 
 body {
-    background: rgb(29, 29, 29);
+    background: rgb(213, 213, 221);
     font-family: "Montserrat", sans-serif;
-    color: white;
+    color: rgb(59, 59, 59);
+    height: 500px;
+}
+
+.weather-content {
+    white-space: nowrap;
+	font-size: 0;
 }
 
 .navMenu {
@@ -23,7 +51,7 @@ body {
 }
 
 .navMenu a {
-    color: white;
+    color: rgb(59, 59, 59);
     text-decoration: none;
     font-size: 1.2em;
     text-transform: uppercase;
@@ -35,13 +63,13 @@ body {
 }
 
 .navMenu a:hover {
-    color: white;
+    color: rgb(59, 59, 59);
 }
 
 .navMenu .dot {
     width: 6px;
     height: 6px;
-    background: white;
+    background: rgb(59, 59, 59);
     border-radius: 50%;
     opacity: 0;
     -webkit-transform: translateX(30px);
@@ -66,36 +94,23 @@ body {
     opacity: 1;
 }
 
-.navMenu a:nth-child(3):hover~.dot {
-    -webkit-transform: translateX(200px);
-    transform: translateX(200px);
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    opacity: 1;
-}
-
-.navMenu a:nth-child(4):hover~.dot {
-    -webkit-transform: translateX(285px);
-    transform: translateX(285px);
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    opacity: 1;
-}
 
 .input_control {
     text-align: center;
 }
 
 input[type=submit] {
-    width: 100;
-    height: 40;
-    background: white;
-    color: rgb(29, 29, 29);
+    padding:10px 15px; 
+    background:white; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
 }
 
 input[type=submit]:focus {
-    border-color: white;
-    box-shadow: 0 0 8px 0 white;
+    border-color: rgb(59, 59, 59);
+    box-shadow: 0 0 8px 0 rgb(59, 59, 59);
 }
 
 input[type=text] {
@@ -115,74 +130,46 @@ input[type=text]:focus {
 }
 
 .content-owm {
-    font-size: 20px;
+    white-space: normal;	
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	margin-right: 5%;
+	font-size: 20px;
 }
 
 .content-weabit {
-    font-size: 20px;
+    white-space: normal;	
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	margin-right: 5%;
+	font-size: 20px;
 }
 
 .content-tomorrow {
-    font-size: 20px;
+    white-space: normal;	
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	margin-right: 0%;
+	font-size: 20px;
 }
 
-.footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
-    min-height: 15vh;
-    background: rgb(25, 25, 25);
-    padding: 30px 0px;
-    font-family: 'Play', sans-serif;
-    text-align: center;
+.weather-content .content-owm:last-child {
+	margin-right: 0 ;
 }
 
-.footer .row {
-    width: 100%;
-    margin: 1% 0%;
-    padding: 0.6% 0%;
-    color: white;
-    font-size: 0.8em;
+.weather-content .content-tomorrow:last-child {
+	margin-right: 0 ;
 }
 
-.footer .row a:hover {
-    color: #fff;
-}
-
-.footer .row ul {
-    width: 100%;
-}
-
-.footer .row ul li {
-    display: inline-block;
-    margin: 0px 30px;
-}
-
-.footer .row a i {
-    font-size: 2em;
-    margin: 0% 1%;
-}
-
-@media (max-width:720px) {
-    .footer {
-        text-align: left;
-        padding: 5%;
-    }
-
-    .footer .row ul li {
-        display: block;
-        margin: 10px 0px;
-        text-align: left;
-    }
-
-    .footer .row a i {
-        margin: 0% 3%;
-    }
+.weather-content .content-weabit:last-child {
+	margin-right: 0 ;
 }
 
 a {
+    margin-right: 10px;
     color: white;
     font-family: helvetica;
     text-decoration: none;

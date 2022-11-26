@@ -14,10 +14,14 @@ use App\Http\Controllers\WeatherController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/info', function () {
     return view('weather');
 });
 
-Route::get('/', [ WeatherController::class, 'showAllService']);
-Route::post('/', [ WeatherController::class, 'showResponse']);
+Route::get('/info/about', function () {
+    return view('about'); 
+});
+
+Route::get('/info', [ WeatherController::class, 'showAllService']);
+Route::post('/info', [ WeatherController::class, 'showResponse']);
 
